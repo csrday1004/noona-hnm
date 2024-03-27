@@ -16,6 +16,16 @@
 .product-cardbox{
   width: 50%;
 }
+.product-cardbox:hover{
+  scale: 1.05;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.choice{
+  color:gray;
+  font-size:10px;
+}
 
 @media (min-width: 768px) {
   .menu {
