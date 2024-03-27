@@ -6,7 +6,7 @@ const ProductAll = () => {
 
   const getProducts = async () => {
     let url = "https://my-json-server.typicode.com/csrday1004/noona-hnm";
-    let response = await fetch(url);
+    let response = await fetch(url+"/products");
     let data = await response.json();
     setProducts(data);
   };
