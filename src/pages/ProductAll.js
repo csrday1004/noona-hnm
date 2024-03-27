@@ -5,10 +5,9 @@ const ProductAll = () => {
   const [products, setProducts] = useState([]);
 
   const getProducts = async () => {
-    let url = "http://localhost:5000/products";
+    let url = "https://my-json-server.typicode.com/csrday1004/noona-hnm";
     let response = await fetch(url);
     let data = await response.json();
-    console.log(data);
     setProducts(data);
   };
 
@@ -27,7 +26,7 @@ const ProductAll = () => {
     >
       {products.map((e, i) => {
         return (
-          <div key={i} style={{width:'25%'}}>
+          <div className="product-cardbox" key={i}>
             <ProductCard data={e} />
           </div>
         );

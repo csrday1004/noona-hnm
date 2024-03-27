@@ -9,4 +9,19 @@
 
 .menu{
   padding:10px;
+  width: 100px;
+  text-align: center;
+}
+
+.product-cardbox{
+  width: 50%;
+}
+
+@media (min-width: 768px) {
+  .menu {
+      width: fit-content;
+  }
+  .product-cardbox{
+    width: 25%;
+  }
 }

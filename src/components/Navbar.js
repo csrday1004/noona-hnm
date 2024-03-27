@@ -27,7 +27,7 @@ const Navbar = () => {
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/H%26M-Logo.svg/330px-H%26M-Logo.svg.png" alt="로고"/>
       </div>
       <div className="3카테고리+검색버튼 flex center">
-        <ul className="카테고리모음 flex" style={{listStyle:'none'}}>
+        <ul className="카테고리모음 flex center" style={{listStyle:'none', flexWrap:'wrap'}}>
           {categories.map((e,i)=>{
           return(
             <li className="menu" key={i}>{e}</li>
