@@ -13,7 +13,7 @@ const ProductCard = ({data}) => {
       {choice?<div className='choice'>Conscious choice</div>:<div className='choice'>­</div>}
       <div>{title}</div>
       <div>₩{price.toLocaleString()}</div>
-      {isNew?<small style={{color:'red'}}>신제품</small>:null}
+      {isNew?<small className='신상 new-arrivals' style={{color:'red'}}>신제품</small>:null}
     </div>
   )
 }
