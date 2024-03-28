@@ -2,7 +2,6 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import ProductAll from "./pages/ProductAll";
 import Login from "./pages/Login";
-import Detail from "./pages/Detail";
 import Navbar from "./components/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "bootstrap/dist/css/bootstrap.min.css";
