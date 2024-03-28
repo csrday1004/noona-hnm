@@ -21,8 +21,9 @@ const Navbar = () => {
         className="로그인상태 flex"
         style={{ justifyContent: "space-between" }}
       >
-        <div className="검색창">
-          <FontAwesomeIcon icon={faSearch} /> <input type="text" />
+        <div className="검색창 search-bar center">
+          <FontAwesomeIcon icon={faSearch} /> 
+          <input type="text" placeholder="제품검색" />
         </div>
 
         <div>
