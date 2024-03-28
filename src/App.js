@@ -21,7 +21,7 @@ import { PrivateRoute } from "./route/PrivateRoute";
 //9. 상품 검색
 
 function App() {
-  const [auth, setAuth] = useState(true);
+  const [auth, setAuth] = useState(false);
 
   useEffect(()=>{
 
