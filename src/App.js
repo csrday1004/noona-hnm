@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useState } from "react";
 import { PrivateRoute } from "./route/PrivateRoute";
+import MobileMenu from "./components/MobileMenu";
 
 //1. 전체상품 페이지, 로그인, 상품상세페이지
 // 1-1.네비게이션바 만들기
@@ -21,21 +22,42 @@ import { PrivateRoute } from "./route/PrivateRoute";
 
 function App() {
   const [auth, setAuth] = useState(false);
+  const [page, setPage] = useState("");
+  const [mobileMenu, setMobileMenu] = useState(false);
 
-  useEffect(()=>{
 
-  },[auth])
+
+  const categories = [
+    "여성",
+    "Divided",
+    "남성",
+    "신생아/유아",
+    "아동",
+    "H&M Home",
+    "Sale",
+    "지속가능성",
+  ];
+
+  useEffect(() => {
+    console.log(mobileMenu);
+  }, [auth, page, mobileMenu]);
+
   return (
-    <div
+    <div 
       className="App"
-      style={{ maxWidth: "1000px", margin: "auto", padding: "30px" }}
+      style={{ maxWidth: "1000px", margin: "auto", padding: "30px",position:'relative'}}
     >
-      <Navbar auth={auth} setAuth={setAuth} />
-      <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
+      {mobileMenu ? <MobileMenu categories={categories} setMobileMenu={setMobileMenu}/> : null}
+
+      <Navbar auth={auth} setAuth={setAuth} setPage={setPage} categories={categories} setMobileMenu={setMobileMenu} mobileMenu={mobileMenu}/>
+      
       <Routes>
-        <Route path="/" element={<ProductAll/>} />
+        <Route path="/" element={<ProductAll  setPage={setPage} />} />
         <Route path="/detail/:id" element={<PrivateRoute auth={auth} />} />
-        <Route path="/login" element={<Login setAuth={setAuth} />} />
+        <Route
+          path="/login"
+          element={<Login setAuth={setAuth} page={page} />}
+        />
       </Routes>
     </div>
   );

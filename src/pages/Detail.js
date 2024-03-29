@@ -13,7 +13,7 @@ const Detail = () => {
     let response = await fetch(url + `/products/${id}`);
     let data = await response.json();
     setDetail(data);
-    console.log(data);
+    // console.log(data);
     setLoading(true);
   };
 

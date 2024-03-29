@@ -1,52 +1,56 @@
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
 import { useNavigate } from "react-router-dom";
 
-
-const Navbar = ({ auth, setAuth }) => {
-
-  const categories = [
-    "여성",
-    "Divided",
-    "남성",
-    "신생아/유아",
-    "아동",
-    "H&M Home",
-    "Sale",
-    "지속가능성",
-  ];
-  
-  const navigate = useNavigate()
-
-  const search = (e) =>{
-    console.log(e.key)
-    let keyword = e.target.value
-    console.log(keyword)
-    if (e.key === 'Enter'){
-      navigate(`/?q=${keyword}`)
+const Navbar = ({
+  auth,
+  setAuth,
+  setPage,
+  categories,
+  setMobileMenu,
+  mobileMenu,
+}) => {
+  console.log(mobileMenu);
+  const navigate = useNavigate();
+  const search = (e) => {
+    // console.log(e.key)
+    let keyword = e.target.value;
+    // console.log(keyword)
+    if (e.key === "Enter") {
+      navigate(`/?q=${keyword}`);
     }
-  }
+  };
+
 
   return (
     <div>
-      <div
-        className="로그인상태 flex"
-        style={{ justifyContent: "space-between" }}
-      >
-        <div className="검색창 search-bar">
-          <FontAwesomeIcon icon={faSearch} />
-          <input onKeyDown={(e)=>{search(e)}} type="text" placeholder="제품검색" />
+      {/* 모바일메뉴 버튼 */}
+      <div className="flex nav-top">
+        <div
+          className="mobile-menu-button"
+          onClick={() => {
+            document.body.style.overflow = "hidden";
+            setMobileMenu(true);
+          }}
+        >
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/1024px-Hamburger_icon.svg.png"
+            alt="메뉴버튼"
+          />
         </div>
 
+        {/* 로그인버튼 */}
         <div
+          className="login-btn"
           style={{ cursor: "pointer" }}
           onClick={() => {
             if (auth === false) {
               navigate("/login");
             } else {
               setAuth(false);
+              // setPage("")
+              navigate("/login");
             }
           }}
         >
@@ -58,6 +62,7 @@ const Navbar = ({ auth, setAuth }) => {
           )}
         </div>
       </div>
+
       <div className="로고 flex logo">
         <img
           onClick={() => {
@@ -78,6 +83,17 @@ const Navbar = ({ auth, setAuth }) => {
             );
           })}
         </ul>
+      </div>
+
+      <div className="검색창 search-bar">
+        <FontAwesomeIcon icon={faSearch} />
+        <input
+          onKeyDown={(e) => {
+            search(e);
+          }}
+          type="text"
+          placeholder="제품검색"
+        />
       </div>
     </div>
   );

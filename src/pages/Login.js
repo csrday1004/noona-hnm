@@ -2,7 +2,7 @@ import { Button, Col, Row } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
 
-const Login = ({setAuth}) => {
+const Login = ({setAuth,page}) => {
 
   const navigate = useNavigate();
 
@@ -12,7 +12,11 @@ const Login = ({setAuth}) => {
         onSubmit={(e) => {
           e.preventDefault();
           setAuth(true)
-          navigate('/')
+          if(page){
+            navigate(page)
+          }else{
+            navigate('/')
+          }
         }}
       >
         <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
