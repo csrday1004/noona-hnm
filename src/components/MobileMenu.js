@@ -12,8 +12,8 @@ const MobileMenu = ({categories,setMobileMenu}) => {
         <ul className="카테고리 categories center">
           {categories.map((e, i) => {
             return (
-              <li onClick={(e)=>{
-                e.stopPropagation()
+              <li onClick={()=>{
+                document.body.style.overflow = "auto";
                 setMobileMenu(false)
               }} className="menu" key={i} style={{ cursor: "pointer" }}>
                 {e}
