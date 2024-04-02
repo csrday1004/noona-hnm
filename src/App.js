@@ -51,11 +51,11 @@ function App() {
     >
       {mobileMenu ? <MobileMenu categories={categories} setMobileMenu={setMobileMenu}/> : null}
 
-      <Navbar auth={auth} setPage={setPage} categories={categories} setMobileMenu={setMobileMenu} mobileMenu={mobileMenu}/>
+      <Navbar setPage={setPage} categories={categories} setMobileMenu={setMobileMenu} mobileMenu={mobileMenu}/>
       
       <Routes>
         <Route path="/" element={<ProductAll  setPage={setPage} />} />
-        <Route path="/detail/:id" element={<PrivateRoute auth={auth} />} />
+        <Route path="/detail/:id" element={<PrivateRoute/>} />
         <Route
           path="/login"
           element={<Login page={page} />}

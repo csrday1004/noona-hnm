@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import ProductCard from "../components/ProductCard";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import productAction from "../redux/actions/productAction";
 
@@ -8,7 +8,7 @@ import productAction from "../redux/actions/productAction";
 const ProductAll = ({setPage}) => {
 
   const products = useSelector((state)=>{
-    console.log('state',state)
+    // console.log('state',state)
     return(state.product.products)})
     
   const navigate = useNavigate()
@@ -18,7 +18,9 @@ const ProductAll = ({setPage}) => {
   const getProducts = async () => {
     dispatch(productAction.getProducts(searchQuery))
   };
-
+  const getProductDetail = async (id) => {
+    dispatch(productAction.getDetail(id));
+  };
   useEffect(() => {
     getProducts();
   }, [query]);
@@ -37,6 +39,7 @@ const ProductAll = ({setPage}) => {
       products.map((e, i) => {
         return (
           <div className="product-cardbox" onClick={()=>{
+            getProductDetail(e.id)
             setPage(`/detail/${e.id}`)
             navigate(`/detail/${e.id}`)
           }} key={i}>
