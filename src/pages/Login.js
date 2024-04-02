@@ -1,17 +1,24 @@
 import { Button, Col, Row } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { authAction } from "../redux/actions/authAction";
+import { useState } from "react";
 
-const Login = ({setAuth,page}) => {
+const Login = ({page}) => {
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const [id, setId] = useState('')
+  const [pw, setPw] = useState('')
 
   return (
     <div className="login-page">
       <Form
         onSubmit={(e) => {
           e.preventDefault();
-          setAuth(true)
+          dispatch(authAction.login(id,pw))//만들어둔 미들웨어의 함수로 보냄
           if(page){
             navigate(page)
           }else{
@@ -24,7 +31,7 @@ const Login = ({setAuth,page}) => {
             아이디(이메일)
           </Form.Label>
           <Col sm={9}>
-            <Form.Control type="email" placeholder="이메일 주소를 입력하세요" />
+            <Form.Control type="email" placeholder="이메일 주소를 입력하세요" onChange={(e)=>{setId(e.target.value)}}/>
           </Col>
         </Form.Group>
 
@@ -37,7 +44,7 @@ const Login = ({setAuth,page}) => {
             비밀번호
           </Form.Label>
           <Col sm={9}>
-            <Form.Control type="password" placeholder="비밀번호를 입력하세요" />
+            <Form.Control type="password" placeholder="비밀번호를 입력하세요" onChange={(e)=>{setPw(e.target.value)}}/>
           </Col>
         </Form.Group>
 

@@ -8,6 +8,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useState } from "react";
 import { PrivateRoute } from "./route/PrivateRoute";
 import MobileMenu from "./components/MobileMenu";
+import { useSelector } from "react-redux";
 
 //1. 전체상품 페이지, 로그인, 상품상세페이지
 // 1-1.네비게이션바 만들기
@@ -21,11 +22,12 @@ import MobileMenu from "./components/MobileMenu";
 //9. 상품 검색
 
 function App() {
-  const [auth, setAuth] = useState(false);
+
+  const auth = useSelector(state=>state.auth.auth)
+
+  // const [auth, setAuth] = useState(false);
   const [page, setPage] = useState("");
   const [mobileMenu, setMobileMenu] = useState(false);
-
-
 
   const categories = [
     "여성",
@@ -49,14 +51,14 @@ function App() {
     >
       {mobileMenu ? <MobileMenu categories={categories} setMobileMenu={setMobileMenu}/> : null}
 
-      <Navbar auth={auth} setAuth={setAuth} setPage={setPage} categories={categories} setMobileMenu={setMobileMenu} mobileMenu={mobileMenu}/>
+      <Navbar auth={auth} setPage={setPage} categories={categories} setMobileMenu={setMobileMenu} mobileMenu={mobileMenu}/>
       
       <Routes>
         <Route path="/" element={<ProductAll  setPage={setPage} />} />
         <Route path="/detail/:id" element={<PrivateRoute auth={auth} />} />
         <Route
           path="/login"
-          element={<Login setAuth={setAuth} page={page} />}
+          element={<Login page={page} />}
         />
       </Routes>
     </div>

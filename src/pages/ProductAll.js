@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import productAction from "../redux/actions/productAction";
 
 
 const ProductAll = ({setPage}) => {
-  const [products, setProducts] = useState([]);
+
+  const products = useSelector((state)=>{
+    console.log('state',state)
+    return(state.product.products)})
+    
   const navigate = useNavigate()
   const [query, setQuery] = useSearchParams()
   const searchQuery = query.get('q')||""
-  
+  const dispatch = useDispatch()
   const getProducts = async () => {
-    let url = `https://my-json-server.typicode.com/csrday1004/noona-hnm/products?q=${searchQuery}`;
-    let response = await fetch(url);
-    let data = await response.json();
-    setProducts(data);
+    dispatch(productAction.getProducts(searchQuery))
   };
 
   useEffect(() => {
@@ -42,9 +45,6 @@ const ProductAll = ({setPage}) => {
         );
       }
       )):null
-      // (<div className="" style={{width:'100%',textAlign:'center'}}>
-      //   <img width={'100%'} src="https://www.turista.co.kr/images/user/nodata.png" alt="검색결과없음"/>
-      //   </div>)
     }
     </div>
   );

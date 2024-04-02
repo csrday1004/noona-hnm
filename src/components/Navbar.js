@@ -1,18 +1,23 @@
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { authAction } from "../redux/actions/authAction";
 
 const Navbar = ({
-  auth,
-  setAuth,
   setPage,
   categories,
   setMobileMenu,
   mobileMenu,
 }) => {
-  console.log(mobileMenu);
+
+
+  const dispatch = useDispatch()
+  const auth = useSelector((state)=>state.auth.auth)
+
   const navigate = useNavigate();
+  
   const search = (e) => {
     // console.log(e.key)
     let keyword = e.target.value;
@@ -48,8 +53,8 @@ const Navbar = ({
             if (auth === false) {
               navigate("/login");
             } else {
-              setAuth(false);
-              // setPage("")
+              // setAuth(false);
+              dispatch(authAction.logOut())
               navigate("/login");
             }
           }}
