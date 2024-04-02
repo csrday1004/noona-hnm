@@ -2,18 +2,18 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import DropDown from "../components/DropDown";
 import { Button } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import productAction from "../redux/actions/productAction";
 
 const Detail = () => {
   const { id } = useParams();
-  const [detail, setDetail] = useState();
+  const detail = useSelector(state=>state.product.detailProduct)
   const [loading, setLoading] = useState(false);
+  
+  const dispatch = useDispatch()
 
   const getProductDetail = async () => {
-    let url = "https://my-json-server.typicode.com/csrday1004/noona-hnm";
-    let response = await fetch(url + `/products/${id}`);
-    let data = await response.json();
-    setDetail(data);
-    // console.log(data);
+    dispatch(productAction.getDetail(id))
     setLoading(true);
   };
 

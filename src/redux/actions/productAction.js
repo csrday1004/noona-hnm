@@ -9,6 +9,16 @@ const getProducts = (searchQuery)=> {
   }
 }
 
-const productAction = {getProducts}
+const getDetail = (id) =>{
+  return async(dispatch,getState)=>{
+    let url = "https://my-json-server.typicode.com/csrday1004/noona-hnm";
+    let response = await fetch(url + `/products/${id}`);
+    let data = await response.json();
+
+    dispatch({type:"GET_DETAIL", payload:{data}})
+  }
+}
+
+const productAction = {getProducts,getDetail}
 
 export default productAction
