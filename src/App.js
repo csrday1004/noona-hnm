@@ -55,7 +55,7 @@ function App() {
       
       <Routes>
         <Route path="/" element={<ProductAll  setPage={setPage} />} />
-        <Route path="/detail/:id" element={<PrivateRoute/>} />
+        <Route path="/detail/:id" element={<PrivateRoute page={page}/>} />
         <Route
           path="/login"
           element={<Login page={page} />}

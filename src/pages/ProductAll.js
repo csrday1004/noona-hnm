@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import ProductCard from "../components/ProductCard";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import productAction from "../redux/actions/productAction";
+// import productAction from "../redux/actions/productAction";
+import { fetchDetail, fetchProducts } from "../redux/reducers/productSlice";
 
 
 const ProductAll = ({setPage}) => {
@@ -15,11 +16,13 @@ const ProductAll = ({setPage}) => {
   const [query, setQuery] = useSearchParams()
   const searchQuery = query.get('q')||""
   const dispatch = useDispatch()
+
   const getProducts = async () => {
-    dispatch(productAction.getProducts(searchQuery))
+    dispatch(fetchProducts(searchQuery))
   };
+
   const getProductDetail = async (id) => {
-    dispatch(productAction.getDetail(id));
+    dispatch(fetchDetail(id));
   };
   useEffect(() => {
     getProducts();

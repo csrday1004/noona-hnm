@@ -7,6 +7,8 @@ import { useState } from "react";
 
 const Login = ({page}) => {
 
+  console.log("login.js", page)
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 

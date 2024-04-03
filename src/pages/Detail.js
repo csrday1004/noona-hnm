@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 
 const Detail = () => {
   const detail = useSelector((state) => state.product.detailProduct);
+  console.log(detail)
+
   return (
     <div>
       <div
