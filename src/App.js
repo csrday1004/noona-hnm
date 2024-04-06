@@ -44,6 +44,11 @@ function App() {
     console.log(mobileMenu);
   }, [auth, page, mobileMenu]);
 
+  // 제품 먼저 누르고 로그인 화면 거치면 디테일이 정상적으로 뜸
+      // 제품을 누를 때 해당 페이지 id가 일단 저장된 상태로 로그인 하니까 문제가 없나봄
+  // 로그인 버튼 눌러 로그인 하고 제품 누르면 에러 뜸
+      // 프롭스로 page를 넘겨야하는데 안 넘어가나?
+
   return (
     <div 
       className="App"

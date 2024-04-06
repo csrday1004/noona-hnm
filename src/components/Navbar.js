@@ -3,7 +3,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { authAction } from "../redux/actions/authAction";
+import { logout } from "../redux/reducers/authSlice";
 
 const Navbar = ({
   setPage,
@@ -53,8 +53,8 @@ const Navbar = ({
             if (auth === false) {
               navigate("/login");
             } else {
-              // setAuth(false);
-              dispatch(authAction.logOut())
+              setPage('/')
+              dispatch(logout())
               navigate("/login");
             }
           }}

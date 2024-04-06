@@ -2,8 +2,9 @@ import { Button, Col, Row } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { authAction } from "../redux/actions/authAction";
 import { useState } from "react";
+import { login } from "../redux/reducers/authSlice";
+
 
 const Login = ({page}) => {
 
@@ -20,7 +21,7 @@ const Login = ({page}) => {
       <Form
         onSubmit={(e) => {
           e.preventDefault();
-          dispatch(authAction.login(id,pw))//만들어둔 미들웨어의 함수로 보냄
+          dispatch(login(id,pw))//만들어둔 미들웨어의 함수로 보냄
           if(page){
             navigate(page)
           }else{

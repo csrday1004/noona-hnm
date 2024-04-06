@@ -33,12 +33,7 @@ const productSlice = createSlice({
   name: 'product',
   initialState,
   reducers: {
-    // getAllProducts(state, action) {
-    //   state.products=action.payload.data
-    // },
-    // getSingleProduct(state, action) {
-    //   state.detailProduct=action.payload.data
-    // }
+ 
   },
   extraReducers:(builder)=>{
     builder.addCase(fetchProducts.pending,(state)=>{
@@ -63,7 +58,6 @@ const productSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     });
-   
   }
 })
 
